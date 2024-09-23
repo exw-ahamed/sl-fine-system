@@ -23,10 +23,10 @@ $sql = "INSERT INTO payment_option (license_number, card_number, cardholder_name
 // Execute query
 if ($conn->query($sql) === TRUE) {
     $_SESSION["notification"] = true;
-    header("Location: http://localhost/finesystem/user/payment-options.php?s=true");
+    header("Location: " . baseUrl . "/user/payment-options.php?s=true");
     exit();
 } else {
     $e = mysqli_error($conn);
-    header("Location: http://localhost/finesystem/user/payment-options.php?e=" . $e);
+    header("Location: " . baseUrl . "/user/payment-options.php?e=" . $e);
     exit();
 }
