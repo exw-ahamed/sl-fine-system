@@ -2,7 +2,7 @@
 include "../app/connection.php";
 include_once "../notification.php";
 if ($_SESSION["username"] == null) {
-    header("Location: http://localhost/finesystem/admin/login");
+    header("Location: " . baseUrl . "/admin/login");
     exit;
 }
 if (isset($_GET["fine"]) && $_GET["fine"] == "added") {
@@ -301,7 +301,8 @@ if (isset($_GET["fine"]) && $_GET["fine"] == "added") {
 
             xhr.onload = function () {
                 if (xhr.status === 200) {
-                    window.location.href = 'http://localhost/finesystem/admin/login/';
+                    const baseUrl = "<?php echo baseUrl; ?>";
+                    window.location.href = baseUrl + '/admin/login/';
                 }
             };
 

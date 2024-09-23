@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $department_row = mysqli_fetch_assoc($department_result);
         $department_id = $department_row['did'];
     } else {
-        header("Location: http://localhost/finesystem/admin/policeman.php?e=1");
+        header("Location: " . baseUrl . "/admin/policeman.php?e=1");
         exit;
     }
 
@@ -45,11 +45,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               VALUES ('$police_id', '$name', '$position', '$department_id', '$dob', '$mobile', '$address', '$password', '$file_name')";
 
     if (mysqli_query($conn, $query)) {
-        header("Location: http://localhost/finesystem/admin/policeman.php?officer=added");
+        header("Location: " . baseUrl . "/admin/policeman.php?officer=added");
         exit;
     } else {
         $error = mysqli_error($conn);
-        header("Location: http://localhost/finesystem/admin/policeman.php?e=" . $error);
+        header("Location: " . baseUrl . "/admin/policeman.php?e=" . $error);
         exit;
     }
 }

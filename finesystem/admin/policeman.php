@@ -2,7 +2,7 @@
 include "../app/connection.php";
 include_once "../notification.php";
 if ($_SESSION["username"] == null) {
-    header("Location: http://localhost/finesystem/admin/login");
+    header("Location: " . baseUrl . "/admin/login");
     exit;
 }
 if (isset($_GET["officer"]) && $_GET["officer"] == "added") {
@@ -424,7 +424,8 @@ if (isset($_GET["officer"]) && $_GET["officer"] == "added") {
                 var policeId = box.id;
 
                 // Construct the URL with the police_id as a GET parameter
-                var redirectUrl = 'http://localhost/finesystem/p/profile/index.php?police_id=' + encodeURIComponent(policeId);
+                var baseUrl = "<?php echo baseUrl; ?>";
+                var redirectUrl = baseUrl + '/p/profile/index.php?police_id=' + encodeURIComponent(policeId);
                 //console.log(redirectUrl)
 
                 // Redirect to the constructed URL
@@ -442,7 +443,8 @@ if (isset($_GET["officer"]) && $_GET["officer"] == "added") {
 
                 xhr.onload = function () {
                     if (xhr.status === 200) {
-                        window.location.href = 'http://localhost/finesystem/admin/login/';
+                        var baseUrl = "<?php echo baseUrl; ?>";
+                        window.location.href = baseUrl + '/admin/login/';
                     }
                 };
 

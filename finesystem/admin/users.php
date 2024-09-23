@@ -1,7 +1,7 @@
 <?php
 include "../app/connection.php";
 if ($_SESSION["username"] == null) {
-    header("Location: http://localhost/finesystem/admin/login");
+    header("Location: " . baseUrl . "/admin/login");
     exit;
 }
 ?>
@@ -366,7 +366,8 @@ if ($_SESSION["username"] == null) {
                 var policeId = box.id;
 
                 // Construct the URL with the police_id as a GET parameter
-                var redirectUrl = 'http://localhost/finesystem/user/profile/index.php?license_number=' + encodeURIComponent(policeId);
+                var baseUrl = "<?php echo baseUrl; ?>";
+                var redirectUrl = baseUrl + '/user/profile/index.php?license_number=' + encodeURIComponent(policeId);
                 //console.log(redirectUrl)
 
                 // Redirect to the constructed URL
@@ -384,7 +385,8 @@ if ($_SESSION["username"] == null) {
 
                 xhr.onload = function () {
                     if (xhr.status === 200) {
-                        window.location.href = 'http://localhost/finesystem/admin/login/';
+                        var baseUrl = "<?php echo baseUrl; ?>";
+                        window.location.href = baseUrl + '/admin/login/';
                     }
                 };
 

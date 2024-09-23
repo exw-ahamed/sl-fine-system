@@ -35,8 +35,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo "Error inserting into police_notification: " . mysqli_error($conn) . "<br>";
                     }
                 }
+
                 echo "<script>
-                window.location.href = 'http://localhost/finesystem/admin/index.php?notification=sent';
+                var baseUrl = " . baseUrl . "
+                window.location.href = baseUrl +'/admin/index.php?notification=sent';
                 
                 </script>";
 
@@ -60,8 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     }
                 }
                 echo "<script>
-                
-                window.location.href = 'http://localhost/finesystem/admin/index.php?notification=sent';
+                var baseUrl = " . baseUrl . "
+                window.location.href = baseUrl+'/admin/index.php?notification=sent';
                 
                 </script>";
             } else {

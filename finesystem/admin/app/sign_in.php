@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Validate input
     if (empty($username) || empty($password)) {
-        header('Location: http://localhost/finesystem/admin/login/');
+        header('Location: ' . baseUrl . '/admin/login/');
         exit;
     }
 
@@ -32,15 +32,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['name'] = $admin['name'];
 
             // Redirect to admin dashboard
-            header('Location: http://localhost/finesystem/admin');
+            header('Location: ' . baseUrl . '/admin');
             exit;
         }
     } else {
-        header('Location: http://localhost/finesystem/admin/login/index.php?e=1');
+        header('Location: ' . baseUrl . '/admin/login/index.php?e=1');
         exit;
     }
 
-    header('Location: http://localhost/finesystem/admin/login/index.php?e=1');
+    header('Location: ' . baseUrl . '/admin/login/index.php?e=1');
     exit;
 
     // Redirect to login page on unsuccessful login
@@ -48,6 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 } else {
     $_SESSION["adminError"] = "DB connection error";
-    header('Location: http://localhost/finesystem/admin/login/');
+    header('Location: ' . baseUrl . '/admin/login/');
     exit;
 }
