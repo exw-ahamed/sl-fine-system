@@ -57,7 +57,7 @@ if (isset($_POST["license_number"])) {
 
 
 
-        header("Location: " . baseUrl . "p/index.php?penalty=added");
+        header("Location: " . baseUrl . "/p/index.php?penalty=added");
         exit;
     } else {
         header("Location: " . baseUrl . "/p/index.php?penalty=e1");
