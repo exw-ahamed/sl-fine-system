@@ -248,10 +248,28 @@ if ($result->num_rows > 0) {
             </div>
             <div class="form-group">
                 <label for="edit-department">Department</label>
-                <input type="text" id="edit-department" name="department" placeholder="Enter new Department">
-                <ul id="suggestions-list"
-                    style="display: none; border: 1px solid #ccc; list-style-type: none; padding: 0; margin: 0; max-height: 150px; overflow-y: auto;">
-                </ul>
+                <select style="padding: 10px; border-radius: 5px;" id="edit-department" name="department">
+                    <option value="" disabled selected>Select a department</option>
+
+                    <?php
+                    // Query to fetch all department names from the police_division table
+                    $sql = "SELECT name FROM police_division";
+                    $result = mysqli_query($conn, $sql);
+
+                    // Check if there are results
+                    if (mysqli_num_rows($result) > 0) {
+                        // Loop through each row to generate the options
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo '<option value="' . htmlspecialchars($row['name']) . '">' . htmlspecialchars($row['name']) . '</option>';
+                        }
+                    } else {
+                        echo '<option value="" disabled>No departments available</option>';
+                    }
+
+                    // Close the database connection
+                    mysqli_close($conn);
+                    ?>
+                </select>
                 <div id="error-message" style="color: red; display: none;"></div>
             </div>
             <div class="form-group">
