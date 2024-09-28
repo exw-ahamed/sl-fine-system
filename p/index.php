@@ -16,6 +16,11 @@ if (isset($_GET["penalty"]) && $_GET["penalty"] == "added") {
 if (isset($_GET["penalty"]) && $_GET["penalty"] == "e1") {
   callNotification("License number is not in the system.");
 }
+
+if (isset($_GET["e2"])) {
+  $e = $_GET["e2"];
+  callNotification($e);
+}
 ?>
 
 <html>
