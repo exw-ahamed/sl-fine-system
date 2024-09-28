@@ -15,6 +15,8 @@ if (isset($_POST['new_license_number'])) {
         header("Location: " . baseUrl . "/p/");
         exit;
     } else {
-        echo mysqli_error($conn);
+        $e = mysqli_error($conn);
+        header("Location: " . baseUrl . "/p/?e2=" . $e);
+        exit;
     }
 }
