@@ -288,6 +288,43 @@ if ($result->num_rows > 0) {
                 <button type="submit" class="submit-btn">Save Changes</button>
             </div>
         </form>
+
+        <script>
+            document.getElementById('edit-officer-form').addEventListener('submit', function (event) {
+                let valid = true;
+
+                // Validate DOB - Officer should be at least 20 years old
+                const dob = document.getElementById('edit-dob').value;
+                if (dob) {
+                    const dobDate = new Date(dob);
+                    const today = new Date();
+                    const age = today.getFullYear() - dobDate.getFullYear();
+                    const monthDiff = today.getMonth() - dobDate.getMonth();
+                    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dobDate.getDate())) {
+                        age--;
+                    }
+
+                    if (age < 20) {
+                        valid = false;
+                        alert("The officer must be at least 20 years old.");
+                    }
+                }
+
+                // Validate mobile number - Should contain exactly 10 digits
+                const mobile = document.getElementById('edit-mobile').value;
+                const mobilePattern = /^\d{10}$/;
+                if (mobile && !mobilePattern.test(mobile)) {
+                    valid = false;
+                    alert("The mobile number must contain exactly 10 digits.");
+                }
+
+                // Prevent form submission if any validation fails
+                if (!valid) {
+                    event.preventDefault();
+                }
+            });
+        </script>
+
     </div>
 </div>
 
