@@ -97,8 +97,10 @@ if ($result->num_rows > 0) {
         <form id="upload-form" enctype="multipart/form-data" method="post">
             <input type="file" id="upload-profile-picture" name="profile_picture" style="display: none;"
                 accept="image/*">
-            <input type="hidden" name="police_id" value="<?php echo $_SESSION['licenseNumber']; ?>">
+            <input type="hidden" name="police_id"
+                value="<?php echo isset($_SESSION['licenseNumber']) ? $_SESSION['licenseNumber'] : ''; ?>">
         </form>
+
         <div class="content__actions">
             <?php if (isset($_SESSION["licenseNumber"])) {
 
