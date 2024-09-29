@@ -24,10 +24,9 @@ if (isset($_GET["fine"]) && $_GET["fine"] == "added") {
             </svg>
         </button>
         <script>
-            document.querySelector('.nav-toggle').addEventListener('click', function () {
-                document.querySelector('.menu-wrap').classList.toggle('active');
-            });
-
+        document.querySelector('.nav-toggle').addEventListener('click', function() {
+            document.querySelector('.menu-wrap').classList.toggle('active');
+        });
         </script>
         <div class="search">
 
@@ -243,96 +242,94 @@ if (isset($_GET["fine"]) && $_GET["fine"] == "added") {
 <script src="../p/js/fine_search.js"></script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        if (sessionStorage.getItem('fineUpdate') == "true") {
-            showNotification('Updated Successfully!');
-            sessionStorage.setItem('fineUpdate', 'false');
-        }
+document.addEventListener('DOMContentLoaded', function() {
+    if (sessionStorage.getItem('fineUpdate') == "true") {
+        showNotification('Updated Successfully!');
+        sessionStorage.setItem('fineUpdate', 'false');
+    }
 
-        // Show the update form when an item is clicked
-        document.querySelectorAll('.nft').forEach(item => {
-            item.addEventListener('click', function () {
-                const fineId = this.id;
-                const fineName = this.querySelector('h2').textContent.split(' #')[0];
-                const fineDescription = this.querySelector('.description').textContent;
-                const finePayment = this.querySelector('.price p').textContent.replace('Rs. ', '');
+    // Show the update form when an item is clicked
+    document.querySelectorAll('.nft').forEach(item => {
+        item.addEventListener('click', function() {
+            const fineId = this.id;
+            const fineName = this.querySelector('h2').textContent.split(' #')[0];
+            const fineDescription = this.querySelector('.description').textContent;
+            const finePayment = this.querySelector('.price p').textContent.replace('Rs. ', '');
 
-                document.getElementById('update-fine-id').value = fineId;
-                document.getElementById('fine_name').value = fineName;
-                document.getElementById('fine_description').value = fineDescription;
-                document.getElementById('fine_payment').value = finePayment;
+            document.getElementById('update-fine-id').value = fineId;
+            document.getElementById('fine_name').value = fineName;
+            document.getElementById('fine_description').value = fineDescription;
+            document.getElementById('fine_payment').value = finePayment;
 
-                document.getElementById('fine-update-container').style.visibility = 'visible';
-            });
+            document.getElementById('fine-update-container').style.visibility = 'visible';
         });
+    });
 
-        // Close the form
-        document.querySelector('.close-btn').addEventListener('click', function () {
-            document.getElementById('fine-update-container').style.visibility = 'hidden';
-        });
+    // Close the form
+    document.querySelector('.close-btn').addEventListener('click', function() {
+        document.getElementById('fine-update-container').style.visibility = 'hidden';
+    });
 
-        // Handle form submission
-        document.getElementById('update-fine-form').addEventListener('submit', function (e) {
-            e.preventDefault();
-            const formData = new FormData(this);
+    // Handle form submission
+    document.getElementById('update-fine-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
 
-            fetch('app/update_fine.php', {
+        fetch('app/update_fine.php', {
                 method: 'POST',
                 body: formData,
             })
-                .then(response => response.text())
-                .then(data => {
-                    sessionStorage.setItem('fineUpdate', 'true');
-                    document.getElementById('fine-update-container').classList.add('hidden');
-                    location.reload(); // Refresh the page to reflect the updates
-                })
-                .catch(error => console.error('Error:', error));
-        });
+            .then(response => response.text())
+            .then(data => {
+                sessionStorage.setItem('fineUpdate', 'true');
+                document.getElementById('fine-update-container').classList.add('hidden');
+                location.reload(); // Refresh the page to reflect the updates
+            })
+            .catch(error => console.error('Error:', error));
     });
-
+});
 </script>
 
 <script>
-    document.querySelectorAll(".logout-svg").forEach(btn => {
-        btn.addEventListener("click", () => {
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'app/log_out.php', true);
-            xhr.setRequestHeader('Content-Type', 'app/log_out.php');
+document.querySelectorAll(".logout-svg").forEach(btn => {
+    btn.addEventListener("click", () => {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'app/log_out.php', true);
+        xhr.setRequestHeader('Content-Type', 'app/log_out.php');
 
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    window.location.href = 'http://localhost/finesystem/admin/login/';
-                }
-            };
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                window.location.href = 'http://localhost/finesystem/admin/login/';
+            }
+        };
 
-            xhr.send();
-        });
+        xhr.send();
     });
+});
 
-    // Get the button that opens the popup
-    const addFineBtn = document.getElementById('addFineBtn');
+// Get the button that opens the popup
+const addFineBtn = document.getElementById('addFineBtn');
 
-    // Get the popup
-    const addFinePopup = document.getElementById('addFinePopup');
+// Get the popup
+const addFinePopup = document.getElementById('addFinePopup');
 
-    // Get the close button
-    const closePopup = document.getElementById('closePopup');
+// Get the close button
+const closePopup = document.getElementById('closePopup');
 
-    // Open the popup when the button is clicked
-    addFineBtn.onclick = function () {
-        addFinePopup.style.display = 'flex';
-    }
+// Open the popup when the button is clicked
+addFineBtn.onclick = function() {
+    addFinePopup.style.display = 'flex';
+}
 
-    // Close the popup when the close button is clicked
-    closePopup.onclick = function () {
+// Close the popup when the close button is clicked
+closePopup.onclick = function() {
+    addFinePopup.style.display = 'none';
+}
+
+// Close the popup when clicking outside of the popup content
+window.onclick = function(event) {
+    if (event.target === addFinePopup) {
         addFinePopup.style.display = 'none';
     }
-
-    // Close the popup when clicking outside of the popup content
-    window.onclick = function (event) {
-        if (event.target === addFinePopup) {
-            addFinePopup.style.display = 'none';
-        }
-    }
-
+}
 </script>

@@ -12,36 +12,36 @@ if (isset($_SESSION['licenseNumber'])) {
 
 <!-- Nav Bar -->
 <div class="site-wrap">
-  <div class="menu-toggle" onclick="toggleMenu()">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-  <script>
+    <div class="menu-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <script>
     function toggleMenu() {
-      document.querySelector('.site-nav').classList.toggle('show');
-      document.querySelector('.site-wrap').classList.toggle('menu-open');
+        document.querySelector('.site-nav').classList.toggle('show');
+        document.querySelector('.site-wrap').classList.toggle('menu-open');
     }
-  </script>
-  <nav class="site-nav">
-    <div class="name">Fine System</div>
+    </script>
+    <nav class="site-nav">
+        <div class="name">Fine System</div>
 
-    <ul class="site-nav-ul">
-      <li class="active">
-        <a href="index.php">Dashboard </a>
-      </li>
+        <ul class="site-nav-ul">
+            <li class="active">
+                <a href="index.php">Dashboard </a>
+            </li>
 
-      <li>
-        <a href="fine-details.php"> Fine Details </a>
-      </li>
-      <li>
-        <a href="payment-options.php"> Payment Options </a>
-      </li>
-      <li><a href="support.php">Support</a></li>
-    </ul>
+            <li>
+                <a href="fine-details.php"> Fine Details </a>
+            </li>
+            <li>
+                <a href="payment-options.php"> Payment Options </a>
+            </li>
+            <li><a href="support.php">Support</a></li>
+        </ul>
 
-    <div id="go-profile" class="note">
-      <?php
+        <div id="go-profile" class="note">
+            <?php
       $license_number = $_SESSION['licenseNumber'];
       $sql_name = "SELECT l.name, lh.profile_picture
                     FROM license l
@@ -54,31 +54,31 @@ if (isset($_SESSION['licenseNumber'])) {
         $name = $row['name'];
         $profile_picture_url = 'src/profile_photo/' . $row['profile_picture'];
         ?>
-        <h3><?php echo $name;
+            <h3><?php echo $name;
       } ?></h3>
-      <?php echo '<img src="' . $profile_picture_url . ' " alt="pp" />' ?>
+            <?php echo '<img src="' . $profile_picture_url . ' " alt="pp" />' ?>
 
-    </div>
-  </nav>
-  <!-- ---------------------------------------------------- -->
+        </div>
+    </nav>
+    <!-- ---------------------------------------------------- -->
 
-  <!-- Main Content -->
-  <main>
-    <!-------------- Main Header------------->
-    <header>
-      <svg onclick="logout()" id="logout-pos" class="logout-svg" xmlns="http://www.w3.org/2000/svg" width="24"
-        height="24" viewBox="0 0 24 24">
-        <path
-          d="M12 21c4.411 0 8-3.589 8-8 0-3.35-2.072-6.221-5-7.411v2.223A6 6 0 0 1 18 13c0 3.309-2.691 6-6 6s-6-2.691-6-6a5.999 5.999 0 0 1 3-5.188V5.589C6.072 6.779 4 9.65 4 13c0 4.411 3.589 8 8 8z" />
-        <path d="M11 2h2v10h-2z" />
-      </svg>
-      <div class="breadcrumbs">
-        <a href="#0/">Home</a>
-      </div>
+    <!-- Main Content -->
+    <main>
+        <!-------------- Main Header------------->
+        <header>
+            <svg onclick="logout()" id="logout-pos" class="logout-svg" xmlns="http://www.w3.org/2000/svg" width="24"
+                height="24" viewBox="0 0 24 24">
+                <path
+                    d="M12 21c4.411 0 8-3.589 8-8 0-3.35-2.072-6.221-5-7.411v2.223A6 6 0 0 1 18 13c0 3.309-2.691 6-6 6s-6-2.691-6-6a5.999 5.999 0 0 1 3-5.188V5.589C6.072 6.779 4 9.65 4 13c0 4.411 3.589 8 8 8z" />
+                <path d="M11 2h2v10h-2z" />
+            </svg>
+            <div class="breadcrumbs">
+                <a href="#0/">Home</a>
+            </div>
 
-      <h1 class="title">Dashboard</h1>
+            <h1 class="title">Dashboard</h1>
 
-      <?php
+            <?php
       // Assuming you have a MySQLi connection already established in $conn
       
       // License number to check
@@ -108,15 +108,15 @@ if (isset($_SESSION['licenseNumber'])) {
       ?>
 
 
-      <nav class="nav-tabs" id="nav-tabs">
-        <a href="#0" class="active" id="fine-tab">
-          Fines
-          <span>
-            <?php echo htmlspecialchars($unpaid_fines_count); ?>
-          </span>
-        </a>
-        <a href="#0" id="payment-tab"> Payment History </a>
-        <?php
+            <nav class="nav-tabs" id="nav-tabs">
+                <a href="#0" class="active" id="fine-tab">
+                    Fines
+                    <span>
+                        <?php echo htmlspecialchars($unpaid_fines_count); ?>
+                    </span>
+                </a>
+                <a href="#0" id="payment-tab"> Payment History </a>
+                <?php
 
         $sql = "
     SELECT COUNT(*) AS notification_count
@@ -133,32 +133,32 @@ if (isset($_SESSION['licenseNumber'])) {
         }
         ?>
 
-        <a href="#0" id="notification-tab">
-          Notifications
-          <span>
-            <?php echo htmlspecialchars($notification_count, ENT_QUOTES, 'UTF-8'); ?>
-          </span>
-        </a>
+                <a href="#0" id="notification-tab">
+                    Notifications
+                    <span>
+                        <?php echo htmlspecialchars($notification_count, ENT_QUOTES, 'UTF-8'); ?>
+                    </span>
+                </a>
 
-      </nav>
-    </header>
+            </nav>
+        </header>
 
-    <!-- -------------------------------- -->
+        <!-- -------------------------------- -->
 
-    <div id="sub-content">
-      <div id="fines-content">
-        <!-- Overdue Fines -->
-        <div class="overdue flex items-center w-off">
-          <p id="overdue-txt">Overdue Fines</p>
-          <div class="line"></div>
-          <svg id="overdue-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-            class="bi bi-chevron-down" viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
-          </svg>
-        </div>
+        <div id="sub-content">
+            <div id="fines-content">
+                <!-- Overdue Fines -->
+                <div class="overdue flex items-center w-off">
+                    <p id="overdue-txt">Overdue Fines</p>
+                    <div class="line"></div>
+                    <svg id="overdue-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                    </svg>
+                </div>
 
-        <?php
+                <?php
         $license_id = $_SESSION["licenseNumber"];
         // Assuming you have a MySQLi connection already established in $conn
         
@@ -226,19 +226,19 @@ if (isset($_SESSION['licenseNumber'])) {
 
 
 
-        <!-- To be paid fines -->
+                <!-- To be paid fines -->
 
-        <div id="fines-content">
-          <div class="overdue flex items-center w-off">
-            <p id="tobe-txt">Fines to be paid</p>
-            <div class="line"></div>
-            <svg id="tobe-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-              class="bi bi-chevron-down" viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
-            </svg>
-          </div>
-          <?php
+                <div id="fines-content">
+                    <div class="overdue flex items-center w-off">
+                        <p id="tobe-txt">Fines to be paid</p>
+                        <div class="line"></div>
+                        <svg id="tobe-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                        </svg>
+                    </div>
+                    <?php
           // Assuming you have a MySQLi connection already established in $conn
           
           // Get today's date
@@ -302,65 +302,66 @@ if (isset($_SESSION['licenseNumber'])) {
             }
           }
           ?>
-        </div>
+                </div>
 
-        <!-- Fine Details popup -->
+                <!-- Fine Details popup -->
 
-        <div class="details-popup hidden">
-          <div class="modal">
-            <article class="modal-container">
-              <header class="modal-container-header">
-                <h1 class="modal-container-title">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
-                    <path fill="none" d="M0 0h24v24H0z" />
-                    <path fill="currentColor"
-                      d="M14 9V4H5v16h6.056c.328.417.724.785 1.18 1.085l1.39.915H3.993A.993.993 0 0 1 3 21.008V2.992C3 2.455 3.449 2 4.002 2h10.995L21 8v1h-7zm-2 2h9v5.949c0 .99-.501 1.916-1.336 2.465L16.5 21.498l-3.164-2.084A2.953 2.953 0 0 1 12 16.95V11zm2 5.949c0 .316.162.614.436.795l2.064 1.36 2.064-1.36a.954.954 0 0 0 .436-.795V13h-5v3.949z" />
-                  </svg>
-                  Terms and Services
-                </h1>
-                <button class="icon-button">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path fill="none" d="M0 0h24v24H0z" />
-                    <path fill="currentColor"
-                      d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" />
-                  </svg>
-                </button>
-              </header>
-              <section class="modal-container-body rtf">
-                <h1>Fine Details</h1>
+                <div class="details-popup hidden">
+                    <div class="modal">
+                        <article class="modal-container">
+                            <header class="modal-container-header">
+                                <h1 class="modal-container-title">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+                                        aria-hidden="true">
+                                        <path fill="none" d="M0 0h24v24H0z" />
+                                        <path fill="currentColor"
+                                            d="M14 9V4H5v16h6.056c.328.417.724.785 1.18 1.085l1.39.915H3.993A.993.993 0 0 1 3 21.008V2.992C3 2.455 3.449 2 4.002 2h10.995L21 8v1h-7zm-2 2h9v5.949c0 .99-.501 1.916-1.336 2.465L16.5 21.498l-3.164-2.084A2.953 2.953 0 0 1 12 16.95V11zm2 5.949c0 .316.162.614.436.795l2.064 1.36 2.064-1.36a.954.954 0 0 0 .436-.795V13h-5v3.949z" />
+                                    </svg>
+                                    Terms and Services
+                                </h1>
+                                <button class="icon-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                        <path fill="none" d="M0 0h24v24H0z" />
+                                        <path fill="currentColor"
+                                            d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" />
+                                    </svg>
+                                </button>
+                            </header>
+                            <section class="modal-container-body rtf">
+                                <h1>Fine Details</h1>
 
-                <table>
-                  <tr>
-                    <td class="th">Fine ID</td>
-                    <td class="th-details">F0001</td>
-                  </tr>
-                  <tr>
-                    <td class="th">Fine</td>
-                    <td class="th-details">Test Fine Name</td>
-                  </tr>
-                  <tr>
-                    <td class="th">Fine details</td>
-                    <td class="th-details">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Sapiente assumenda praesentium repudiandae nam impedit
-                      sequi iure alias. Id dicta laudantium consequuntur
-                      delectus quas corrupti quaerat nesciunt sed accusantium,
-                      harum commodi?
-                    </td>
-                  </tr>
-                </table>
-              </section>
-              <footer class="modal-container-footer">
-                <button class="button is-primary close-btn">Close</button>
-              </footer>
-            </article>
-          </div>
-        </div>
-      </div>
+                                <table>
+                                    <tr>
+                                        <td class="th">Fine ID</td>
+                                        <td class="th-details">F0001</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="th">Fine</td>
+                                        <td class="th-details">Test Fine Name</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="th">Fine details</td>
+                                        <td class="th-details">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                            Sapiente assumenda praesentium repudiandae nam impedit
+                                            sequi iure alias. Id dicta laudantium consequuntur
+                                            delectus quas corrupti quaerat nesciunt sed accusantium,
+                                            harum commodi?
+                                        </td>
+                                    </tr>
+                                </table>
+                            </section>
+                            <footer class="modal-container-footer">
+                                <button class="button is-primary close-btn">Close</button>
+                            </footer>
+                        </article>
+                    </div>
+                </div>
+            </div>
 
-      <div id="payment-content" class="hidden">
-        <h1>Payment Content</h1>
-        <?php
+            <div id="payment-content" class="hidden">
+                <h1>Payment Content</h1>
+                <?php
         $license_id = $_SESSION["licenseNumber"];
         // Assuming you have a MySQLi connection already established in $conn
         
@@ -416,11 +417,11 @@ if (isset($_SESSION['licenseNumber'])) {
           }
         }
         ?>
-      </div>
+            </div>
 
-      <div id="notificaton-content" class="hidden">
-        <h1>Notifications</h1>
-        <?php
+            <div id="notificaton-content" class="hidden">
+                <h1>Notifications</h1>
+                <?php
         // Assuming you have a MySQLi connection already established in $conn
 // And that the user's license number is available in a variable $license_number
         
@@ -431,6 +432,7 @@ if (isset($_SESSION['licenseNumber'])) {
     FROM notification AS n
     JOIN license_notifications AS ln ON n.notification_id = ln.notification_id
     WHERE ln.license_number = '$license_number'
+    ORDER BY n.date DESC
 ";
 
         $result = $conn->query($sql);
@@ -466,91 +468,88 @@ if (isset($_SESSION['licenseNumber'])) {
         ?>
 
 
-      </div>
-    </div>
-  </main>
+            </div>
+        </div>
+    </main>
 
-  <!-- --------------------------------------------------- -->
+    <!-- --------------------------------------------------- -->
 </div>
 
 <script src="js/userdashboard.js"></script>
 <script>
-  goProfile();
+goProfile();
 
-  function logout() {
+function logout() {
 
     var xhr = new XMLHttpRequest();
     xhr.open('GET', '../app/logout.php', true);
     xhr.send();
 
-    xhr.onload = function () {
-      if (xhr.status === 200) {
-        window.location.href = '../login.php';
-      }
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            window.location.href = '../login.php';
+        }
     };
-  }
+}
 
-  document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     const fineCard = document.querySelector(".fine-card");
     const fineCardHeader = document.getElementById("fine-card-header");
 
     if (fineCard && fineCardHeader) {
-      const fineCardLabels = fineCard.querySelectorAll("label");
-      const headerLabels = fineCardHeader.querySelectorAll("label");
+        const fineCardLabels = fineCard.querySelectorAll("label");
+        const headerLabels = fineCardHeader.querySelectorAll("label");
 
-      fineCardLabels.forEach((label, index) => {
-        if (headerLabels[index]) {
-          const labelWidth = label.offsetWidth;
+        fineCardLabels.forEach((label, index) => {
+            if (headerLabels[index]) {
+                const labelWidth = label.offsetWidth;
 
-          // Set the width of the header label to match the fine-card label
-          headerLabels[index].style.width = labelWidth + "px";
-          headerLabels[index].style.textAlign = "center";
-        }
-      });
-
-      // Align the header slightly above the fine-card
-      fineCardHeader.style.position = "absolute";
-      fineCardHeader.style.top = (fineCard.offsetTop - 30) + "px"; // Move the header 10px higher
-      fineCardHeader.style.left = fineCard.offsetLeft + "px";
-    }
-  });
-
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.notification-card').forEach(card => {
-      card.addEventListener('click', function () {
-        const notificationId = this.getAttribute('data-id');
-
-        card.style.opacity = '0';
-        setTimeout(() => {
-          card.style.display = 'none';
-        }, 300);
-
-        fetch('app/delete_notification.php', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: `notification_id=${notificationId}`
-        })
-          .then(response => response.text())
-          .then(result => {
-            if (result === 'success') {
-              this.remove();
-            } else {
-              alert('Failed to delete notification: ' + result);
+                // Set the width of the header label to match the fine-card label
+                headerLabels[index].style.width = labelWidth + "px";
+                headerLabels[index].style.textAlign = "center";
             }
-          })
-          .catch(error => console.error('Error:', error));
-      });
+        });
+
+        // Align the header slightly above the fine-card
+        fineCardHeader.style.position = "absolute";
+        fineCardHeader.style.top = (fineCard.offsetTop - 30) + "px"; // Move the header 10px higher
+        fineCardHeader.style.left = fineCard.offsetLeft + "px";
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.notification-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const notificationId = this.getAttribute('data-id');
+
+            card.style.opacity = '0';
+            setTimeout(() => {
+                card.style.display = 'none';
+            }, 300);
+
+            fetch('app/delete_notification.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `notification_id=${notificationId}`
+                })
+                .then(response => response.text())
+                .then(result => {
+                    if (result === 'success') {
+                        this.remove();
+                    } else {
+                        alert('Failed to delete notification: ' + result);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
     });
-  });
+});
 
-  function goProfile() {
-    document.getElementById('go-profile').addEventListener('click', function () {
-      window.location.href = 'profile';
+function goProfile() {
+    document.getElementById('go-profile').addEventListener('click', function() {
+        window.location.href = 'profile';
     });
-  }
-
-
-
+}
 </script>

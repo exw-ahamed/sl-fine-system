@@ -1339,7 +1339,7 @@ body {
 .nft {
   position: relative;
   user-select: none;
-  width: 230px;
+  width: 300px;
   height: 300px;
   margin: 2rem auto;
   border: 1px solid #ffffff22;
@@ -1362,9 +1362,11 @@ body {
     margin-top: 0;
   }
   ins {
+    font-size: 16px;
     text-decoration: none;
   }
   .main h2 {
+    font-size: 24px;
     color: #e1e1e1;
   }
   .main {
@@ -1393,6 +1395,7 @@ body {
     .description {
       margin: 0.5rem 0;
       color: #a89ec9;
+      font-size: 16px;
     }
     .tokenInfo {
       width: 90%;
@@ -1404,6 +1407,7 @@ body {
         align-items: center;
         color: #ee83e5;
         font-weight: 700;
+        font-size: 16px;
         ins {
           margin-left: -0.3rem;
           margin-right: 0.5rem;
@@ -1426,7 +1430,7 @@ body {
       display: flex;
       align-items: center;
       margin-top: 0.2rem;
-      margin-bottom: -0.3rem;
+      margin-bottom: 10px;
       ins {
         color: #a89ec9;
         text-decoration: none;

@@ -25,10 +25,9 @@ if (isset($_GET["notification"]) && $_GET["notification"] == "sent") {
             </svg>
         </button>
         <script>
-            document.querySelector('.nav-toggle').addEventListener('click', function () {
-                document.querySelector('.menu-wrap').classList.toggle('active');
-            });
-
+        document.querySelector('.nav-toggle').addEventListener('click', function() {
+            document.querySelector('.menu-wrap').classList.toggle('active');
+        });
         </script>
         <div class="search">
 
@@ -290,8 +289,8 @@ if (isset($_GET["notification"]) && $_GET["notification"] == "sent") {
 
                                         <p type="Title: "><input placeholder="What is this about..." name="title"
                                                 required></p>
-                                        <p type="Message:"><input placeholder="Type the message here..."
-                                                name="description" required></p>
+                                        <p type="Message:"><textarea type="" placeholder="Type the message here..."
+                                                name="description" required></textarea></p>
                                         <button>Send Message</button>
 
                                     </form>
@@ -408,52 +407,49 @@ if (isset($_GET["notification"]) && $_GET["notification"] == "sent") {
 </div>
 
 <script>
-    document.querySelectorAll(".logout-svg").forEach(btn => {
-        btn.addEventListener("click", () => {
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'app/log_out.php', true);
-            xhr.setRequestHeader('Content-Type', 'app/log_out.php');
+document.querySelectorAll(".logout-svg").forEach(btn => {
+    btn.addEventListener("click", () => {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'app/log_out.php', true);
+        xhr.setRequestHeader('Content-Type', 'app/log_out.php');
 
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    window.location.href = 'http://localhost/finesystem/admin/login/';
-                }
-            };
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                window.location.href = 'http://localhost/finesystem/admin/login/';
+            }
+        };
 
-            xhr.send();
-        });
+        xhr.send();
     });
+});
 
-    document.getElementById('popup-trigger').addEventListener('click', function () {
-        var popup = document.getElementById('popup-form');
-        console.log('Clicked');
+document.getElementById('popup-trigger').addEventListener('click', function() {
+    var popup = document.getElementById('popup-form');
+    console.log('Clicked');
 
-        popup.style.display = 'flex';
-        setTimeout(function () {
-            popup.classList.add('show');
-        }, 10); // Delay to ensure display:flex is applied before transition
-    });
+    popup.style.display = 'flex';
+    setTimeout(function() {
+        popup.classList.add('show');
+    }, 10); // Delay to ensure display:flex is applied before transition
+});
 
 
 
-    document.querySelector('.close-btn').addEventListener('click', function () {
-        var popup = document.getElementById('popup-form');
+document.querySelector('.close-btn').addEventListener('click', function() {
+    var popup = document.getElementById('popup-form');
+    popup.classList.remove('show');
+    setTimeout(function() {
+        popup.style.display = 'none';
+    }, 400); // Wait for the transition to complete before hiding
+});
+
+window.addEventListener('click', function(event) {
+    var popup = document.getElementById('popup-form');
+    if (event.target === popup) {
         popup.classList.remove('show');
-        setTimeout(function () {
+        setTimeout(function() {
             popup.style.display = 'none';
         }, 400); // Wait for the transition to complete before hiding
-    });
-
-    window.addEventListener('click', function (event) {
-        var popup = document.getElementById('popup-form');
-        if (event.target === popup) {
-            popup.classList.remove('show');
-            setTimeout(function () {
-                popup.style.display = 'none';
-            }, 400); // Wait for the transition to complete before hiding
-        }
-    });
-
-
-
+    }
+});
 </script>
