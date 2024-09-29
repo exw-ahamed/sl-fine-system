@@ -97,31 +97,31 @@ if ($result->num_rows > 0) {
         <form id="upload-form" enctype="multipart/form-data" method="post">
             <input type="file" id="upload-profile-picture" name="profile_picture" style="display: none;"
                 accept="image/*">
-            <input type="hidden" name="police_id" value="<?php echo $police_id; ?>">
+            <input type="hidden" name="police_id" value="<?php echo $_SESSION['licenseNumber']; ?>">
         </form>
         <div class="content__actions">
             <?php if (isset($_SESSION["licenseNumber"])) {
 
                 ?>
-                <a href="../../user/">
-                    <span id="go-back">
-                        <svg id="go-back-svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1" />
-                        </svg><span>Go Back</span></a>
+            <a href="../../user/">
+                <span id="go-back">
+                    <svg id="go-back-svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1" />
+                    </svg><span>Go Back</span></a>
             <?php } ?>
 
             <?php if (isset($_SESSION["username"])) {
 
                 ?>
-                <a href="../../admin/users.php">
-                    <span id="go-back">
-                        <svg id="go-back-svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1" />
-                        </svg><span>Go Back</span></a>
+            <a href="../../admin/users.php">
+                <span id="go-back">
+                    <svg id="go-back-svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1" />
+                    </svg><span>Go Back</span></a>
             <?php } ?>
             <a href=""></span>
                 <span id="share"><svg id="share-svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -249,41 +249,41 @@ if ($result->num_rows > 0) {
                 <span class="close-btn">&times;</span>
                 <h2>Penalty Details</h2>
                 <?php if (!empty($penalties)): ?>
-                    <table class="penalty-table">
-                        <thead>
-                            <tr>
-                                <th>Penalty ID</th>
-                                <th>Policeman Name</th>
-                                <th>Issued Date</th>
-                                <th>Deadline</th>
-                                <th>Payment Status</th>
-                                <th>Total Fine</th>
-                                <!-- <th>Show Fines</th> -->
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($penalties as $penalty): ?>
-                                <tr>
-                                    <td><?php echo htmlspecialchars($penalty['pid']); ?></td>
-                                    <td><?php echo htmlspecialchars($penalty['policeman_name']); ?></td>
-                                    <td><?php echo htmlspecialchars($penalty['issued_date']); ?></td>
-                                    <td><?php echo htmlspecialchars($penalty['deadline']); ?></td>
-                                    <td><?php echo htmlspecialchars($penalty['payment_status']); ?></td>
-                                    <td><?php echo "Rs." . htmlspecialchars($penalty['total_fine']); ?></td>
-                                    <td><?php echo "<button id='" . $penalty['pid'] . "' class='show-fines-btn'> Show Fines </button>" ?>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
+                <table class="penalty-table">
+                    <thead>
+                        <tr>
+                            <th>Penalty ID</th>
+                            <th>Policeman Name</th>
+                            <th>Issued Date</th>
+                            <th>Deadline</th>
+                            <th>Payment Status</th>
+                            <th>Total Fine</th>
+                            <!-- <th>Show Fines</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($penalties as $penalty): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($penalty['pid']); ?></td>
+                            <td><?php echo htmlspecialchars($penalty['policeman_name']); ?></td>
+                            <td><?php echo htmlspecialchars($penalty['issued_date']); ?></td>
+                            <td><?php echo htmlspecialchars($penalty['deadline']); ?></td>
+                            <td><?php echo htmlspecialchars($penalty['payment_status']); ?></td>
+                            <td><?php echo "Rs." . htmlspecialchars($penalty['total_fine']); ?></td>
+                            <td><?php echo "<button id='" . $penalty['pid'] . "' class='show-fines-btn'> Show Fines </button>" ?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
                 <?php else: ?>
-                    <p>No penalties found for this license number.</p>
+                <p>No penalties found for this license number.</p>
                 <?php endif; ?>
                 <button onclick="closePenaltyDetails()" id="close-penalty-details" class="action-btn">Close</button>
                 <script>
-                    function closePenaltyDetails() {
-                        document.getElementById("popupContainer").style.display = "none";
-                    }
+                function closePenaltyDetails() {
+                    document.getElementById("popupContainer").style.display = "none";
+                }
                 </script>
             </div>
         </div>
@@ -305,9 +305,9 @@ if ($result->num_rows > 0) {
                 </table>
                 <button class="action-btn" onclick="closeFinesPopup()">Close</button>
                 <script>
-                    function closeFinesPopup() {
-                        document.getElementById("finesPopup").style.display = "none";
-                    }
+                function closeFinesPopup() {
+                    document.getElementById("finesPopup").style.display = "none";
+                }
                 </script>
             </div>
         </div>
@@ -390,112 +390,113 @@ if ($result->num_rows > 0) {
 <script src="../js/update_popup.js"></script>
 
 <script>
-    svg();
-    updatePhoto();
+svg();
+updatePhoto();
 
 
 
-    function svg() {
-        document.getElementById('go-back').addEventListener('click', function () {
-            window.history.back();
+function svg() {
+    document.getElementById('go-back').addEventListener('click', function() {
+        window.history.back();
+    });
+
+    document.getElementById('share').addEventListener('click', function() {
+        html2canvas(document.body).then(function(canvas) {
+            var imageURL = canvas.toDataURL('image/png');
+
+            var link = document.createElement('a');
+            link.href = imageURL;
+
+            link.download = 'profile.png';
+
+            link.click();
         });
+    });
 
-        document.getElementById('share').addEventListener('click', function () {
-            html2canvas(document.body).then(function (canvas) {
-                var imageURL = canvas.toDataURL('image/png');
+}
 
-                var link = document.createElement('a');
-                link.href = imageURL;
+function updatePhoto() {
+    document.querySelector('.content__cover').addEventListener('click', function() {
+        document.getElementById('upload-profile-picture').click();
+    });
 
-                link.download = 'profile.png';
+    document.getElementById('upload-profile-picture').addEventListener('change', function(event) {
+        if (event.target.files && event.target.files[0]) {
+            var formData = new FormData();
+            formData.append('profile_picture', event.target.files[0]);
 
-                link.click();
-            });
-        });
+            // Perform an AJAX request to upload the image
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '../app/upload_profile_picture.php',
+                true); // Adjusted path to match your directory structure
 
-    }
-
-    function updatePhoto() {
-        document.querySelector('.content__cover').addEventListener('click', function () {
-            document.getElementById('upload-profile-picture').click();
-        });
-
-        document.getElementById('upload-profile-picture').addEventListener('change', function (event) {
-            if (event.target.files && event.target.files[0]) {
-                var formData = new FormData();
-                formData.append('profile_picture', event.target.files[0]);
-
-                // Perform an AJAX request to upload the image
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', '../app/upload_profile_picture.php', true); // Adjusted path to match your directory structure
-
-                xhr.onload = function () {
-                    if (xhr.status === 200) {
-                        // Update the avatar with the new image
-                        var response = JSON.parse(xhr.responseText);
-                        if (response.success) {
-                            document.querySelector('.content__avatar').style.backgroundImage = 'url(' + response.new_path + ')';
-                        } else {
-                            alert('Failed to upload image: ' + response.message);
-                        }
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    // Update the avatar with the new image
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        document.querySelector('.content__avatar').style.backgroundImage = 'url(' + response
+                            .new_path + ')';
                     } else {
-                        alert('An error occurred while uploading the image.');
+                        alert('Failed to upload image: ' + response.message);
                     }
-                };
+                } else {
+                    alert('An error occurred while uploading the image.');
+                }
+            };
 
-                xhr.send(formData);
-            }
-        });
-    }
+            xhr.send(formData);
+        }
+    });
+}
 
-    function logout() {
+function logout() {
 
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', '../../app/logout.php', true);
-        xhr.send();
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '../../app/logout.php', true);
+    xhr.send();
 
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                window.location.href = '../../login.php';
-            }
-        };
-
-
-
-    }
-
-    function openUpdateProfile() {
-        const updateProfileBtn = document.getElementById('update-profile-btn');
-        const profileUpdateContainer = document.getElementById('profile-update-container');
-        const closePopupBtn = document.getElementById('close-popup');
-
-        // Show the popup
-
-        profileUpdateContainer.style.display = 'flex';
-        var addressValue = "<?php echo htmlspecialchars($address, ENT_QUOTES, 'UTF-8'); ?>";
-        document.getElementById('address').value = addressValue;
-        var mobileValue = "<?php echo htmlspecialchars($mobile, ENT_QUOTES, 'UTF-8'); ?>";
-        document.getElementById('mobile').value = mobileValue;
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            window.location.href = '../../login.php';
+        }
+    };
 
 
-        // Close the popup
-        closePopupBtn.addEventListener('click', () => {
-            profileUpdateContainer.style.display = 'none';
-        });
 
-        // Optionally, handle form submission
-        document.getElementById('update-profile-form').addEventListener('submit', function (event) {
-            var mobileInput = document.getElementById('mobile').value;
-            var mobileError = document.getElementById('mobile-error');
-            var mobilePattern = /^[0-9]{10}$/;
+}
 
-            if (!mobilePattern.test(mobileInput)) {
-                mobileError.style.display = 'block';
-                event.preventDefault(); // Prevent form submission
-            } else {
-                mobileError.style.display = 'none';
-            }
-        });
-    }
+function openUpdateProfile() {
+    const updateProfileBtn = document.getElementById('update-profile-btn');
+    const profileUpdateContainer = document.getElementById('profile-update-container');
+    const closePopupBtn = document.getElementById('close-popup');
 
+    // Show the popup
+
+    profileUpdateContainer.style.display = 'flex';
+    var addressValue = "<?php echo htmlspecialchars($address, ENT_QUOTES, 'UTF-8'); ?>";
+    document.getElementById('address').value = addressValue;
+    var mobileValue = "<?php echo htmlspecialchars($mobile, ENT_QUOTES, 'UTF-8'); ?>";
+    document.getElementById('mobile').value = mobileValue;
+
+
+    // Close the popup
+    closePopupBtn.addEventListener('click', () => {
+        profileUpdateContainer.style.display = 'none';
+    });
+
+    // Optionally, handle form submission
+    document.getElementById('update-profile-form').addEventListener('submit', function(event) {
+        var mobileInput = document.getElementById('mobile').value;
+        var mobileError = document.getElementById('mobile-error');
+        var mobilePattern = /^[0-9]{10}$/;
+
+        if (!mobilePattern.test(mobileInput)) {
+            mobileError.style.display = 'block';
+            event.preventDefault(); // Prevent form submission
+        } else {
+            mobileError.style.display = 'none';
+        }
+    });
+}
 </script>
